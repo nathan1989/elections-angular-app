@@ -1,0 +1,77 @@
+.ac-main-wrapper {
+	background: $block-primary-background;
+	position: relative;
+}
+
+.uk-container-small {
+	max-width: $breakpoint-small;
+	@include medium-screen {
+		max-width: $breakpoint-large;
+	}
+}
+
+.uk-block {
+	padding: 40px 0 60px;
+	@include medium-screen {
+		padding: 80px 0 120px;
+	}
+	&:first-of-type {
+		padding-top: 0;
+	}
+	&:last-of-type:not(.sticky-block) {
+		.curve-bottom {
+			display: none;
+		}
+	}
+}
+
+.curve-bottom {
+	@include curve-bottom();
+	.uk-block-primary & {
+		path {
+			fill: $block-secondary-background;
+		}
+	}
+	.third-block-next & {	
+		path {
+			fill: $block-third-background;
+		}	
+	}
+	.uk-block-third & {
+		path {
+			fill: $block-primary-background;
+		}
+	}
+}
+
+// third style block container
+.uk-block-third {
+	background: $block-third-background;
+}
+
+// general inner container
+.inner-container-wrap {
+	margin-bottom: 60px;
+	@include medium-screen {
+		margin-bottom: 120px;
+	}
+
+	.container {
+		max-width: $inner-container;
+		margin: 15px auto;
+		&.medium {
+			max-width: $inner-container-medium;
+		}		
+		&:not(.no-padding){
+			padding: 0 20px;
+			@include medium-screen {
+				padding: 0;
+			}
+		}
+	}
+}
+
+// general text wrapper
+.text-container {
+	max-width: 700px;
+}

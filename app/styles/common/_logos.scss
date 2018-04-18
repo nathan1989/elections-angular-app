@@ -1,0 +1,48 @@
+.show-your-love-logo,
+.elections-logo,
+.ac-logo {
+	text-indent: -9999px;
+	background-repeat: no-repeat;
+	display: block;
+	transition: opacity;
+	background-size: 100% 100%;
+	&:hover:not(.show-your-love-logo) {
+		opacity: .8;
+	}
+}
+
+.show-your-love-logo {
+	background-image: url(#{$image-path}heart-lockup.png);
+	width: 99px;
+	height: 97px;
+	@include medium-screen {
+		width: 150px;
+		height: 160px;
+	}
+	@include large-screen {
+		width: 304px;
+		height: 320.5px;
+	}
+}
+
+.elections-logo {
+	background-image: url(#{$image-path}elections-logo.svg);
+	width: 133px;
+	height: 78px;
+	.ac-header & {
+		width: 115px;
+		height: 75px;
+		background-size: 100% 100%;
+	}
+}
+
+.ac-logo {
+	background-image: url(#{$image-path}ac-logo.svg);
+	width: 222px;
+	height: 79px;
+	.ac-header & {
+		width: 205px;
+		height: 73px;
+		background-size: 100% 100%;
+	}
+}

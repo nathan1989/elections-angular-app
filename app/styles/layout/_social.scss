@@ -1,0 +1,19 @@
+.updates-top {
+	min-height: 200px;
+}
+.updates {
+	position: relative;
+	top: -200px;
+	@include medium-screen {
+		top: -250px;
+	}
+
+	.social-menu {
+		clear: both;
+		margin-top: 10px;
+		@include medium-screen {
+			clear: none;
+			float: right;			
+		}
+	}
+}

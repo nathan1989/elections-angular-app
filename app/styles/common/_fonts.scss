@@ -1,0 +1,56 @@
+// Fonts
+
+// Gotham bold
+@font-face {
+  font-family: 'gotham-bold';
+  src: url(#{$font-path}/GothamRounded-Bold.eot); /* IE9 Compat Modes */
+  src: url(#{$font-path}/GothamRounded-Bold.eot?#iefix) format('embedded-opentype'), /* IE6-IE8 */
+       url(#{$font-path}/GothamRounded-Bold.woff2) format('woff2'), /* Super Modern Browsers */
+       url(#{$font-path}/GothamRounded-Bold.woff) format('woff'), /* Pretty Modern Browsers */
+       url(#{$font-path}/GothamRounded-Bold.ttf)  format('truetype'), /* Safari, Android, iOS */
+       url(#{$font-path}/GothamRounded-Bold.svg#GothamRounded-Bold) format('svg'); /* Legacy iOS */
+}
+
+// Gotham medium
+@font-face {
+  font-family: 'gotham-medium';
+  src: url(#{$font-path}/GothamRounded-Medium.eot); /* IE9 Compat Modes */
+  src: url(#{$font-path}/GothamRounded-Medium.eot?#iefix) format('embedded-opentype'), /* IE6-IE8 */
+       url(#{$font-path}/GothamRounded-Medium.woff2) format('woff2'), /* Super Modern Browsers */
+       url(#{$font-path}/GothamRounded-Medium.woff) format('woff'), /* Pretty Modern Browsers */
+       url(#{$font-path}/GothamRounded-Medium.ttf)  format('truetype'), /* Safari, Android, iOS */
+       url(#{$font-path}/GothamRounded-Medium.svg#GothamRounded-Medium) format('svg'); /* Legacy iOS */
+}
+
+// Gotham book
+@font-face {
+  font-family: 'gotham-book';
+  src: url(#{$font-path}/GothamRounded-Book.eot); /* IE9 Compat Modes */
+  src: url(#{$font-path}/GothamRounded-Book.eot?#iefix) format('embedded-opentype'), /* IE6-IE8 */
+       url(#{$font-path}/GothamRounded-Book.woff2) format('woff2'), /* Super Modern Browsers */
+       url(#{$font-path}/GothamRounded-Book.woff) format('woff'), /* Pretty Modern Browsers */
+       url(#{$font-path}/GothamRounded-Book.ttf)  format('truetype'), /* Safari, Android, iOS */
+       url(#{$font-path}/GothamRounded-Book.svg#GothamRounded-Book) format('svg'); /* Legacy iOS */
+}
+
+// Rooney
+@font-face {
+  font-family: 'rooney';
+  src: url(#{$font-path}/Rooney-Sans-ExtraBold.eot); /* IE9 Compat Modes */
+  src: url(#{$font-path}/Rooney-Sans-ExtraBold.eot?#iefix) format('embedded-opentype'), /* IE6-IE8 */
+       url(#{$font-path}/Rooney-Sans-ExtraBold.woff2) format('woff2'), /* Super Modern Browsers */
+       url(#{$font-path}/Rooney-Sans-ExtraBold.woff) format('woff'), /* Pretty Modern Browsers */
+       url(#{$font-path}/Rooney-Sans-ExtraBold.ttf)  format('truetype'), /* Safari, Android, iOS */
+       url(#{$font-path}/Rooney-Sans-ExtraBold.svg#Rooney-Sans-ExtraBold) format('svg'); /* Legacy iOS */
+}
+
+// Komika
+@font-face {
+  font-family: 'komika';
+  src: url(#{$font-path}/KomikaTitle-Paint.eot); /* IE9 Compat Modes */
+  src: url(#{$font-path}/KomikaTitle-Paint.eot?#iefix) format('embedded-opentype'), /* IE6-IE8 */
+       url(#{$font-path}/KomikaTitle-Paint.woff2) format('woff2'), /* Super Modern Browsers */
+       url(#{$font-path}/KomikaTitle-Paint.woff) format('woff'), /* Pretty Modern Browsers */
+       url(#{$font-path}/KomikaTitle-Paint.ttf)  format('truetype'), /* Safari, Android, iOS */
+       url(#{$font-path}/KomikaTitle-Paint.svg#KomikaTitle-Paint) format('svg'); /* Legacy iOS */
+}

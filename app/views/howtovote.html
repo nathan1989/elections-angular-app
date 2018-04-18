@@ -1,0 +1,105 @@
+<section class="uk-block uk-block-primary uk-contrast next-block-positioned">
+	<div class="uk-container-center">
+		<h1 class="uk-text-center">{{content.howtovote}}</h1>
+
+		<div class="inner-container-wrap">
+			<div class="container medium uk-grid uk-grid-collapse howto-nav uk-margin-large-bottom">
+				<div class="uk-width-small-1-3 uk-margin-bottom uk-text-center">
+					<span class="uk-link uk-h2 enrol" du-smooth-scroll="enrol" tabindex="0">{{content.enrolnav}}</span>
+				</div>
+				<div class="uk-width-small-1-3 uk-margin-bottom uk-text-center">
+					<span class="uk-link uk-h2 decide" du-smooth-scroll="decide" tabindex="0">{{content.decidenav}}</span>
+				</div>
+				<div class="uk-width-small-1-3 uk-margin-bottom uk-text-center">
+					<span class="uk-link uk-h2 vote" du-smooth-scroll="vote" tabindex="0">{{content.votenav}}</span>
+				</div>
+			</div>
+			<p class="uk-text-center"><span class="uk-link uk-h3" du-smooth-scroll="map-section" tabindex="0">{{content.findoutwhere}}<small><i class="uk-icon-chevron-down uk-margin-small-left"></i></small></span></p>
+		</div>
+
+		<div class="inner-container-wrap" id="enrol">
+			<div class="container medium no-padding">
+				<img src="images/howtovote-enrol.png" alt="enrol">
+			</div>
+			<div class="container">
+				<div class="uk-margin-large-bottom">
+					<p class="uk-h4 g-med" ng-bind-html="content.enrolcontent | trusthtml"></p>
+				</div>
+				<div class="uk-text-center">
+					<a href="http://elections.org.nz" target="_blank" class="uk-button uk-button-primary">{{content.enrolbtn}}</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="inner-container-wrap" id="decide">
+			<div class="container medium no-padding">
+				<img src="images/howtovote-decide.png" alt="decide">
+			</div>
+			<div class="container">
+				<div class="uk-margin-large-bottom">
+					<p class="uk-h4 g-med" ng-bind-html="content.decidecontent | trusthtml"></p>
+				</div>
+				<div class="uk-text-center">
+					<a href="/candidatesearch" class="uk-button uk-button-primary">{{content.decidebtn}}</a>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<img src="images/curve-bottom.svg" data-uk-svg alt="" aria-hidden="true">
+</section>
+<section class="uk-block uk-block-secondary uk-contrast">
+	<div class="uk-container-center">
+		<div class="inner-container-wrap uk-margin-large-bottom" id="vote">
+			<div class="container medium no-padding">
+				<img src="images/howtovote-vote.png" alt="vote">
+			</div>
+			<div class="container">
+				<p class="uk-h4 g-med" ng-bind-html="content.votecontent | trusthtml"></p>
+			</div>
+		</div>
+	</div>	
+
+	<div class="uk-container-center">
+		<div class="inner-container-wrap uk-margin-large-bottom">
+			<div class="container">
+				<p class="uk-h2 uk-text-center" id="map-section">WHERE TO POST YOUR VOTE</p>
+			</div>
+		</div>
+	</div>	
+
+	<div class="uk-form ac-search-form uk-container-center search-map">
+		<span class="clear" aria-role="button" ng-if="noAddress" ng-click="resetField()"><i class="uk-icon-close"></i> <span class="ns-sr-only">clear</span></span>
+		<label for="address-search" class="ns-sr-only">Address search</label>
+		<input type="text" id="address-search" name="address-search" class="uk-width-1-1" placeholder="Address search" ng-model="searchAddressInput" search-address>
+		<div class="results" ng-hide="error" ng-if="results.length">
+			<span ng-repeat="result in results" ng-click="getAddress($event)" tabindex="{{$index}}">{{result.ResultString[0]._text}}</span>
+		</div>
+	</div>
+
+	<div class="map-area" ng-class="{closed:!legendOpen}">
+		<div class="legend" ng-hidden="!legendOpen">
+			<ul class="uk-list">
+				<li class="council">Ballot box</li>
+				<li class="bus">The Love Bus</li>
+				<li class="heart">Heart voter boxes</li>
+				<li class="location">Your location</li>
+				<li class="special">Special Vote Collection</li>
+			</ul>
+			<button class="uk-button uk-button-primary" ng-click="legendOpen = !legendOpen">
+			<span ng-if="legendOpen">HIDE</span><span ng-if="!legendOpen">SHOW</span> LEGEND</button>
+		</div>
+		<div id="google-map" class="map"></div>
+	</div>
+
+	<div class="inner-container-wrap">
+		<div class="container medium">
+			<div class="floating-content large" id="keydates">
+				<div class="inner">
+					<h2>{{content.keydates}}</h2>
+					<p class="uk-h4 g-book" ng-bind-html="content.keydatescontent | trusthtml">
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

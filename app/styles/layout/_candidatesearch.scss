@@ -1,0 +1,36 @@
+.search-controls {
+	font-size: 1.9rem;
+	border-radius: 10px;
+	background: white;
+	color: $base-link-color-alt;
+	display: flex;
+    align-items: center;
+	margin-bottom: $utility-align-vertical;
+	label {
+		float: left;
+		flex: 1;
+		padding: 10px;
+		text-align: center;
+		cursor: pointer;
+		border-radius: 10px 0 0 10px;
+	}
+	label:nth-child(2){		
+		border-radius: 0 10px 10px 0;
+	}
+	.active {
+		background: $base-link-color-alt;
+		color: white;
+	}
+}
+
+// wrap this in the parent as this style is used elsewhere
+.ac-search-form {
+	.search-sections {
+		@media (max-width: $breakpoint-medium) {
+		  display: none;
+		  &.active {
+		  	display: block;
+		  }
+		} 
+	}
+}

@@ -1,0 +1,43 @@
+// Uikit bug fix
+@function fade($color,$opacity){
+    @return rgba($color,($opacity/100));
+};
+
+// UIkit mixins
+@import "../../bower_components/uikit/scss/uikit-mixins.scss";
+
+// Custom variable overrides
+@import "common/_variables";
+
+// UIkit variables
+@import "../../bower_components/uikit/scss/uikit-variables.scss";
+
+// Custom mixins
+@import "common/_mixins";
+
+// UIkit files
+@import "../../bower_components/uikit/scss/uikit.scss";
+@import "../../bower_components/uikit/scss/components/form-advanced.scss";
+@import "../../bower_components/uikit/scss/components/notify.scss";
+@import "../../bower_components/uikit/scss/components/sticky.scss";
+@import "../../bower_components/uikit/scss/components/tooltip.scss";
+
+// common styles
+@import "common/_fonts";
+@import "common/_global";
+@import "common/_logos";
+
+// components
+@import "components/_forms";
+@import "components/_icons";
+
+// layout
+@import "layout/_main";
+@import "layout/_nav";
+@import "layout/_header";
+@import "layout/_footer";
+@import "layout/_vote-pages";
+@import "layout/_candidatesearch";
+@import "layout/_results";
+@import "layout/_candidate";
+@import "layout/_social";

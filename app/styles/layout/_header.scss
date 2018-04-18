@@ -1,0 +1,355 @@
+.ac-header {
+	position: relative;
+	padding: 20px;	
+	@include medium-screen {
+		padding-bottom: 60px;
+	}
+	&:before {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+		max-width: $breakpoint-xlarge;
+		height: 140px;
+		margin: auto;
+		background: url(#{$image-path}city-bg.png) center 10px no-repeat;
+		background-size: 100% 100%;	
+		z-index: 2;	
+	}
+	@include small-screen {
+		&:before {
+			background-size: 60% 100%;
+		}
+	}
+	@include medium-screen {
+		&:before {
+			width: 100%;
+			height: 330px;
+			background-size: 80% 100%;	
+			background-position: center 20px;
+		}
+	}
+	@include large-screen {
+		&:before {
+			height: 400px;
+			background-position: center 10px;
+		}
+	}
+	@include xlarge-screen {
+		&:before {
+			height: 490px;
+		}
+		// padding-top: 35px;
+		padding-top: 0; // will add once favourites and lang are added
+	}
+
+	// clouds
+	.cloud {
+		position: absolute;
+		z-index: 1;
+		display: none;
+		@include medium-screen {				
+			display: block;
+		}
+		&.cloud-one {
+			top: 130px;
+			left: 200px;
+		}
+		&.cloud-two {
+			top: 60px;
+			right: 390px;
+		}
+		&.cloud-three {
+			top: 160px;
+			right: 160px;
+		}
+	}
+
+	// mobile menu
+	.mobile-menu {
+		color: $base-link-color-alt;
+	}
+
+	// hide things on bigger screen
+	.mobile-menu,
+	.hidden-on-xlarge {
+		@media(min-width: $breakpoint-xlarge){
+			display: none;
+		}
+	}
+
+	// hide things on smaller screen
+	.favourites-count,
+	.top-logos,
+	.translate .text {
+		@media(max-width: $breakpoint-xlarge){
+			display: none;
+		}
+	}
+
+	// make things clickable
+	.mobile-menu,
+	.utilities-menu,
+	.top-logos {
+		> * {			
+			position: relative;
+			z-index: 5;
+		}
+	}
+
+	// favourites and translating
+	.utilities-menu {
+		float: right;
+		> * {
+			color: $dark-blue;
+		}
+		@include xlarge-screen {
+			float: none;
+			position: relative;
+			top: 40px;
+		}
+	}		
+		// favourites
+		.favourites-count {
+			.red-circle {
+				margin-right: 5px;				
+			}
+			.inner-circle {
+				font-family: $rooney;
+				&:after {
+					content: '';
+					background: url(#{$image-path}fav-star.svg) 0 0 no-repeat;
+					background-size: 100%;
+					width: 17px;
+					height: 17px;
+					position: absolute;
+					bottom: -5px;
+					right: -7px;
+				}
+			}
+		}
+
+		// translates
+		.translate-list {
+			text-align: left;
+			position: absolute;
+			right: 0;
+			top: 20px;
+			background: #fff;
+			padding: 10px;
+		    border: 1px solid #ddd;
+		    width: 200px; 
+		    @include xlarge-screen {
+		    	right: inherit;
+		    	left: 0;
+		    }
+		}
+
+		.translate-menu {
+			position: absolute;
+			left: -9999px;
+			&.show {
+				position: static;
+				left: 0;
+			}
+		}
+		.translate {
+			cursor: pointer;
+			text-transform: uppercase;
+			&:before {
+				content: '';
+				background: url(#{$image-path}nz-flag.png) 0 0 no-repeat;
+				background-size: 100% 100%;
+				float: left;
+				margin-right: 10px;
+				width: 34px;
+				height: 20px;
+			}
+			&.maori {
+				&:before {
+					// background-image: url(#{$image-path}maori-flag.png);
+					background-image: url(#{$image-path}nz-flag.png);
+				}
+			}
+			&.chinese {
+				&:before {
+					background-image: url(#{$image-path}china-flag.png);
+				}
+			}
+			&.samoan {
+				&:before {
+					background-image: url(#{$image-path}samoa-flag.png);
+				}
+			}
+		}
+
+	// main nav menu
+	.nav-wrap {
+		max-width: 1286px;
+		transform: translateX(-150%);
+		position: fixed;
+		@media(max-width: $breakpoint-xlarge){
+			&.active {
+				transition: transform .5s;
+				transform: translateX(0);
+				left: 0;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+				height: 100%;
+				background: $block-primary-background;	
+				z-index: 10000;
+				@include medium-screen {
+					transform: translateX(-50%);
+					width: 50%;
+				}
+			}
+		}
+
+		.mobile-menu {
+			padding: 20px 20px 30px; 
+			font-size: 16px;
+		}
+
+		@include xlarge-screen {
+			transform: none;
+			position: relative;
+			z-index: 3;
+		}
+	}
+
+		.show-your-love-logo {
+			margin: auto;
+			position: relative;
+		    z-index: 4;
+			@include xlarge-screen {
+				margin-top: -150px;
+				top: 190px;
+			}
+		}
+
+	.nav-menu {
+		padding: 0;
+		background: url(#{$image-path}heart-banner-small.png) 0 0 no-repeat;
+		background-size: 100% 100%;
+		max-width: 50%;
+		margin: auto;
+		font-size: 2.3rem;
+	    height: 311px;
+	    width: 315px;
+	    max-width: 90%;
+
+		li {
+			font-size: 18px; // needs a static size for background image
+			text-align: center;
+			margin-bottom: 17px;
+		}
+
+		a {
+			display: block;
+			padding: 12px 10px;
+		}
+
+		svg {
+			position: absolute;
+			left: -9999px;
+		}
+		@include xlarge-screen {
+			background-image: url(#{$image-path}heart-banner-simplified.png);
+    		min-height: 150px;
+			margin: auto;			
+			height: auto;
+			width: auto;
+			max-width: none;
+			li {
+				position: absolute;
+				padding: 5px 10px;
+				margin-bottom: 0;
+				.active {
+					position: absolute;
+					z-index: 4;
+				    left: -9999px;
+				    height: 100px;
+				    width: 100%; 
+					path {
+						fill: $block-secondary-background;
+					}
+				}
+				.text {					
+					position: relative;
+					left: 0;
+					z-index: 5;	
+    				height: 40px;
+					path {
+						fill: $base-link-color-alt;
+					}
+				}
+				&:hover:not(.active) {
+					.text path {
+						fill: $dark-blue;
+					}
+				}
+				&.active {
+					.active {
+						left: 2px;
+					}
+					.text path {
+						fill: #fff;
+					}
+				}
+				a {
+					padding: 0;
+				}
+				span {
+					position: absolute;
+				    height: 1px;
+				    width: 1px;
+				    overflow: hidden;
+				    clip: rect(1px, 1px, 1px, 1px);
+				}
+			}
+
+			li:first-child {
+				top: 52px;
+				left: 7%;
+				.active {
+					top: -24px;
+				}
+			}
+			li:nth-child(2) {
+				top: 31px;
+				left: 20%;
+				.active {
+					top: -26px;
+				}
+			}
+			li:nth-child(3) {
+				top: 26px;
+				right: 21%;
+				.active {
+					top: -24px;
+				}
+			}
+			li:last-child {
+				top: 50px;
+				right: 9%;
+				.active {
+					top: -25px;
+				}
+			}
+		}
+	}
+	&:after {
+		content: '';
+		background: url(#{$image-path}curve-header.svg) 0 0 no-repeat;
+		background-size: 100% 100%;
+		z-index: 2;
+		@include curve-bottom(45px, 130px, $block-primary-background);
+		@include large-screen {				
+			height: 180px;
+		}
+	}
+}

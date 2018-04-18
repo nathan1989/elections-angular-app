@@ -1,0 +1,82 @@
+<section id="candidate-page-top" candidate-height class="uk-block-primary uk-position-relative candidate-block">
+	<div id="ac-candidate-wrapper" class="ac-candidate-wrapper">
+	<div ng-repeat="person in candidate" class="ac-candidate-page uk-container uk-container-center">
+		<div class="uk-position-relative">
+			<span ng-click="back()" class="uk-link back" aria-role="button" tabindex="0">Close</span>
+			<div class="header">
+				<h1>{{person.Name}}</h1>
+				<p class="uk-h3 subheading"><strong>{{person.CandidateRole}} candidate</strong> for {{person.Area}}</p>
+			</div>
+			<div class="wrapper">
+				<div class="sidebar">	
+					<div class="img-wrap">	
+						<img src="images/profile-card.svg" data-uk-svg class="svg">
+						<div class="inner">
+							<img ng-src="http://candidate.showyourlove.co.nz/app/profileimages/{{person.ImageFile}}?width=239" width="239" height="273" alt="{{person.Name}}">
+						</div>
+					</div>
+					<div ng-if="person.Details.SocialMediaUrlOne || person.Details.SocialMediaUrlTwo || person.Details.WebsiteUrl || person.Details.WebsiteUrl2 || person.Details.WebsiteUrl3">
+						<h3>View candidate web pages</h3>
+						<ul class="uk-list link-list">
+							<li ng-if="person.Details.SocialMediaUrlOne"><a href="{{person.Details.SocialMediaUrlOne}}" target="_blank">Site</a></li>
+							<li ng-if="person.Details.SocialMediaUrlTwo"><a href="{{person.Details.SocialMediaUrlTwo}}" target="_blank">Site</a></li>
+							<li ng-if="person.Details.WebsiteUrl"><a href="{{person.Details.WebsiteUrl}}" target="_blank">Site</a></li>
+							<li ng-if="person.Details.WebsiteUrl2"><a href="{{person.Details.WebsiteUrl2}}" target="_blank">Site</a></li>
+							<li ng-if="person.Details.WebsiteUrl3"><a href="{{person.Details.WebsiteUrl3}}" target="_blank">Site</a></li>
+						</ul>
+					</div>
+					<p class="uk-margin-top-remove">
+						<input type="checkbox" name="favourites" value="fav-{{person.CandidateId}}" id="fav-{{person.CandidateId}}" class="fav-check" ng-click="favourite(person)" ng-checked="favInit(person.CandidateId)" tabindex="-1">
+						<label class="uk-button" for="fav-{{person.CandidateId}}" tabindex="0"><span class="red-circle"><span class="inner-circle"><i class="uk-icon-star"></i></span></span>
+						<span ng-if="isFavText">Remove from</span>
+						<span ng-if="!isFavText">Add to</span> favourites</label>
+						<button class="uk-button" ng-click="sharePage()"><span class="red-circle"><span class="inner-circle"><i class="uk-icon-share"></i></span></span>Share page</button>
+					</p>
+				</div>
+				<div class="main">
+					<section ng-if="person.PersonalStatement">
+						<h2>Personal statement</h2>
+						<p ng-bind-html="person.PersonalStatement | newLines" class="text"></p>
+					</section>
+					<section ng-if="person.Details.CandidateVision">			
+						<h2>Vision for Auckland</h2>
+						<p ng-bind-html="person.Details.CandidateVision | newLines" class="text"></p>
+					</section>
+					<section >			
+						<div class="uk-form">
+							<h2 class="uk-display-inline-block uk-margin-right">{{person.Name}} - thoughts on</h2>
+							<div class="search-sections">
+								<div class="uk-text-center">
+									<label class="ns-sr-only" for="ideasList">Ideas</label>
+									<select id="ideasList" class="uk-display-inline-block" ng-model="ideasList" ng-options="idea.type as idea.name for idea in ideas">
+									</select>
+								</div>
+							</div>
+						</div>
+					  	<div class="ideas-list-single" ng-switch on="ideasList">
+							<p ng-switch-when="view1" ng-bind-html="person.Details.View1 | trusthtml" ng-model="person.Details.View1"></p>
+							<p ng-switch-when="view2" ng-bind-html="person.Details.View2 | trusthtml" ng-model="person.Details.View2"></p>
+							<p ng-switch-when="view3" ng-bind-html="person.Details.View3 | trusthtml" ng-model="person.Details.View3"></p>
+							<p ng-switch-when="view4" ng-bind-html="person.Details.View4 | trusthtml" ng-model="person.Details.View4"></p>
+							<p ng-switch-when="view5" ng-bind-html="person.Details.View5 | trusthtml" ng-model="person.Details.View5"></p>
+							<p ng-switch-when="view6" ng-bind-html="person.Details.View6 | trusthtml" ng-model="person.Details.View6"></p>
+							<p ng-switch-default="view1" ng-bind-html="person.Details.View1 | trusthtml" ng-model="person.Details.View1"></p>
+						</div>
+					</section>
+					<section ng-if="person.Details.VideoUrl">			
+						<h2>{{person.Name}} - Video</h2>
+						<videoembed video="person.Details.VideoUrl"></videoembed>
+					</section>
+					<span ng-click="back()" class="uk-visible-small uk-link back bottom" aria-role="button">Close</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<svg width="100%" height="30px" viewBox="0 0 1440 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="curve-bottom" preserveAspectRatio="none">
+	  <path d="M1440,0 L0,0 L0,3.10190161 C237.414255,20.9231864 477.362036,30 719.5,30 C961.977934,30 1202.25953,20.8976802 1440,3.02678468 L1440,0 Z" id="Combined-Shape" fill="#FFFFFF" transform="translate(720.000000, 15.000000) scale(1, -1) translate(-720.000000, -15.000000) "></path>
+</section>
+<section id="candidate-page-bottom" candidate-height class="uk-block-secondary uk-position-relative candidate-block">
+	<div class="uk-container uk-container-center">
+	</div>
+</section>

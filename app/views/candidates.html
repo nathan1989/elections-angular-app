@@ -1,0 +1,276 @@
+<section class="uk-block uk-block-primary uk-contrast candidate-results">
+	<div class="uk-container uk-container-center" ng-class="{ 'uk-animation-slide-right' : animate, 'uk-animation-slide-right uk-animation-reverse' : reverseAnimate }">
+		<div class="uk-grid uk-form">
+			<div class="uk-width-medium-1-3 address-details">
+
+				<div ng-if="!favView">
+					<h2 class="uk-margin-bottom-remove uk-display-inline-block">
+						<span ng-if="address">{{ address }}</span>
+						<span ng-if="!address">Your ward and board</span>
+					</h2>
+				</div>
+
+				<h2 ng-if="favView" class="favourite-title uk-margin-bottom">Favourite candidates<span class="uk-h5 uk-display-block uk-link" ng-click="favPage(false)" aria-role="button">View all candidates</span></h2>
+
+				<p ng-if="ward" class="faint-text"><span class="g-med">Council ward:</span> {{ ward }}<br>
+				<span ng-if="board"><span class="g-med">Local board:</span> {{ board }}</span></p>
+
+				<p>
+					<a href="/candidatesearch" ng-click="willAnimate()" class="uk-h5 uk-link uk-margin-right"><i class="uk-icon-undo uk-margin-small-right"></i> Reset your location</a>
+				</p>
+
+				<label ng-click="favPage(true)" ng-if="!favView">
+					<input type="checkbox" name="favourites">
+					<span class="uk-link">Show favourites only</span>
+				</label>
+
+				<h2 class="dhb-license-title">Select your district health board and licensing trust below</h2>
+				<p class="faint-text dhb-license-description uk-margin-top-remove"><span class="g-med">Tip: Your district health board and licensing trust area (if applicable) is on your voting document.</span></p>
+				<div class="search-sections">
+					<label for="dhbOptionsList" class="ns-sr-only">Select district health board</label>	
+			        <select id="dhbOptionsList" class="uk-width-1-1" ng-model="dhbOptionsList" ng-options="area.name as area.type for area in dhbOptions" ng-change="roleUpdate(dhbOptionsList, 'dhb')">
+			        	<option value="">Select district health board</option>
+			        </select>
+				</div>
+				<p><input type="checkbox" class="uk-margin-small-right" id="license-check" ng-model="licenseCheck" ng-change="licenseChange(licenseCheck)"><label for="license-check" class="uk-link">I am in a licensing trust area.</label></p>
+				<div class="search-sections">
+					<label for="licenseOptionsList" class="ns-sr-only">Select licensing trust</label>	
+			        <select id="licenseOptionsList" class="uk-width-1-1" ng-model="licenseOptionsList" ng-options="area.name as area.type for area in licenseOptions" ng-disabled="!licenseCheck" ng-change="roleUpdate(licenseOptionsList, 'license')">
+			        	<option value="">Select licensing trust</option>
+			        </select>
+				</div>
+			</div>
+			<div class="uk-width-medium-2-3 address-filters">
+				<div class="uk-grid">
+					<div class="uk-visible-small uk-width-medium-1-1 candidate-controls">
+						<h2 class="title">View candidates by</h2>
+						<div class="uk-clearfix">
+							<button class="uk-float-left" ng-click="chooseFilter('role');" ng-class="{ active : role }">Role</button>
+							<button class="uk-float-right" ng-click="chooseFilter('idea');" ng-class="{ active : idea }">Topic</button>
+						</div>
+					</div>
+					<div class="uk-width-medium-1-2 address-filter-view" ng-class="{ active : role }">
+						<h2 class="uk-hidden-small">Show candidates by role</h2>	
+						<ul class="uk-list">
+							<li class="uk-margin-small-bottom" ng-repeat="role in roles" ng-class="{'disabled-checkbox-wrap' : updateFilterStatus === role.initHidden && hideDhb === role.type || hideLicense === role.type}">
+								<label class="big-checkbox" ng-class="{checked: therole.chosen[role.type]}"><input type="checkbox" ng-model="therole.chosen[role.type]" ng-change="selectRole(therole.chosen)" ng-disabled="updateFilterStatus === role.initHidden && hideDhb === role.type || hideLicense === role.type"><span>{{role.name}}</span></label>
+							</li>
+						</ul>
+					</div>
+					<div class="uk-width-medium-1-2 address-filter-view" ng-class="{ active : idea }">
+						<h2 class="uk-hidden-small idea-list-heading">Compare candidates' thoughts on</h2>
+						<ul class="uk-list idea-list-group">
+							<li ng-repeat="idea in ideas"><label class="big-radio-label"><input type="radio" name="ideas" ng-model="$parent.ideasGroup" value="{{ idea.type }}" class="big-radio" ng-change="selectIdea(idea)"><span>{{ idea.name }}</span></label></li>
+						</ul>
+					</div>				
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="reset-wrap">
+		<span class="uk-link reset-btn" ng-click="resetFilters()" aria-role="button"><span class="red-circle uk-margin-small-right"><span class="inner-circle"><i class="uk-icon-undo"></i></span></span> Clear all filters</span>
+	</div>
+	<svg width="100%" height="30px" viewBox="0 0 1440 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="curve-bottom" preserveAspectRatio="none">
+	  <path d="M1440,0 L0,0 L0,3.10190161 C237.414255,20.9231864 477.362036,30 719.5,30 C961.977934,30 1202.25953,20.8976802 1440,3.02678468 L1440,0 Z" id="Combined-Shape" fill="#FFFFFF" transform="translate(720.000000, 15.000000) scale(1, -1) translate(-720.000000, -15.000000) "></path>
+	</svg>
+</section>
+
+<section class="uk-block uk-block-secondary uk-contrast">
+	<div ng-if="favView" class="uk-container uk-container-center uk-margin-large-bottom">
+		<h1>Review your favourite candidates</h1>
+		<p class="uk-h4">Complete the form above to filter your results and see further candidates.</p>
+	</div>
+	<div class="uk-container uk-container-center uk-margin-large-bottom" ng-if="!mayorList.length && !wardList.length && !boardList.length && !dhbList.length && !licenseList.length" ng-hide="favView" ng-include="'views/no-results.html'">
+	</div>
+	<div class="uk-container uk-container-center ac-candidate-list-wrap" ng-class="{ 'ideas-list-wrap' : ideasView }" ng-show="mayorList.length || wardList.length || boardList.length || dhbList.length || licenseList.length">
+		<div class="uk-margin-large-bottom" ng-show="mayorList.length">
+			<div class="heading-section">
+				<h1 ng-class="{ 'uk-float-left uk-margin-bottom-remove' : !ideasView }">Mayoral candidates <span ng-if="ideasView" class="g-book">on {{ ideaTitle }}</span></h1>
+				<p ng-if="!ideasView && !favView" class="share-results">
+					<span class="title">Share these results</span>
+					<span><a href="{{ share.link }}" target="{{ share.target }}" ng-repeat="share in shareLinks" ng-click="sharePage(share)"><i class="uk-icon {{ share.icon }}"></i><span class="ns-sr-only">{{ share.name }}</span></a></span>
+				</p>				
+			</div>
+			<div class="uk-grid">
+				<div class="ac-candidate-item uk-width-medium-1-3" ng-repeat="person in mayorList">
+					<div class="inner-wrap">
+						<input type="checkbox" name="favourites" value="fav-{{person.CandidateId}}" id="fav-{{person.CandidateId}}" ng-click="favourite(person)" ng-checked="favInit(person.CandidateId)">
+						<div class="favourite-btn">
+							<label for="fav-{{person.CandidateId}}"><i class="uk-icon-star"></i><span class="ns-sr-only">
+								<span ng-if="favInit(person.CandidateId)">Remove</span>
+								<span ng-if="!favInit(person.CandidateId)">Add</span> {{person.Name}}
+								<span ng-if="favInit(person.CandidateId)">from</span>
+								<span ng-if="!favInit(person.CandidateId)">to</span> 
+								favourites
+							</span>
+							</label>
+						</div>
+						<div class="inner">
+							<a href="/candidate/mayor/{{person.CandidateId}}" class="img-wrap"><img ng-src="http://candidate.showyourlove.co.nz/app/profileimages/{{person.ImageFile}}?width=96" alt="{{person.Name}}" width="96" height="110"></a>
+							<div class="inner-text">
+							  	<a href="/candidate/mayor/{{person.CandidateId}}"><h3 class="heading">{{person.Name}}</h3></a>
+							  	<h4 ng-if="person.Ticket" class="uk-h5 role">{{person.Ticket}}</h4>
+						  	</div>
+					  	</div>
+					  	<a href="/candidate/mayor/{{person.CandidateId}}" class="idea-item" ng-if="ideasView" ng-switch on="ideasGroup">
+							<p ng-switch-when="view1" ng-text-truncate="person.Details.View1" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View1 | trusthtml" ng-model="person.Details.View1"></p>
+							<p ng-switch-when="view2" ng-text-truncate="person.Details.View2" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View2 | trusthtml" ng-model="person.Details.View2"></p>
+							<p ng-switch-when="view3" ng-text-truncate="person.Details.View3" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View3 | trusthtml" ng-model="person.Details.View3"></p>
+							<p ng-switch-when="view4" ng-text-truncate="person.Details.View4" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View4 | trusthtml" ng-model="person.Details.View4"></p>
+							<p ng-switch-when="view5" ng-text-truncate="person.Details.View5" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View5 | trusthtml" ng-model="person.Details.View5"></p>
+							<p ng-switch-when="view6" ng-text-truncate="person.Details.View6" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View6 | trusthtml" ng-model="person.Details.View6"></p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="uk-margin-large-bottom" ng-show="wardList.length">
+			<div class="heading-section">
+				<h1>Ward councillor candidates <span ng-if="ideasView" class="g-book">on {{ ideaTitle }}</span></h1>				
+			</div>
+			<div class="uk-grid">
+				<div class="ac-candidate-item" ng-class="{ 'uk-width-medium-1-3' : !ideasView }" ng-repeat="person in wardList">
+					<div class="inner-wrap">
+						<input type="checkbox" name="favourites" value="fav-{{person.CandidateId}}" id="fav-{{person.CandidateId}}" ng-click="favourite(person)" ng-checked="favInit(person.CandidateId)">
+						<div class="favourite-btn">
+							<label for="fav-{{person.CandidateId}}"><i class="uk-icon-star"></i><span class="ns-sr-only">
+								<span ng-if="favInit(person.CandidateId)">Remove</span>
+								<span ng-if="!favInit(person.CandidateId)">Add</span> {{person.Name}}
+								<span ng-if="favInit(person.CandidateId)">from</span>
+								<span ng-if="!favInit(person.CandidateId)">to</span> 
+								favourites
+							</span></label>
+						</div>
+						<div class="inner">
+							<a href="/candidate/ward/{{person.CandidateId}}" class="img-wrap"><img ng-src="http://candidate.showyourlove.co.nz/app/profileimages/{{person.ImageFile}}?width=96" alt="{{person.Name}}" width="96" height="110"></a>
+							<div class="inner-text">
+							  	<a href="/candidate/ward/{{person.CandidateId}}"><h3 class="heading">{{person.Name}}</h3></a>
+							  	<h4 ng-if="person.Ticket" class="uk-h5 role">{{person.Ticket}}</h4>
+						  	</div>
+					  	</div>
+					  	<a href="/candidate/ward/{{person.CandidateId}}" class="idea-item" ng-if="ideasView" ng-switch on="ideasGroup">
+							<p ng-switch-when="view1" ng-text-truncate="person.Details.View1" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View1 | trusthtml" ng-model="person.Details.View1"></p>
+							<p ng-switch-when="view2" ng-text-truncate="person.Details.View2" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View2 | trusthtml" ng-model="person.Details.View2"></p>
+							<p ng-switch-when="view3" ng-text-truncate="person.Details.View3" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View3 | trusthtml" ng-model="person.Details.View3"></p>
+							<p ng-switch-when="view4" ng-text-truncate="person.Details.View4" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View4 | trusthtml" ng-model="person.Details.View4"></p>
+							<p ng-switch-when="view5" ng-text-truncate="person.Details.View5" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View5 | trusthtml" ng-model="person.Details.View5"></p>
+							<p ng-switch-when="view6" ng-text-truncate="person.Details.View6" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View6 | trusthtml" ng-model="person.Details.View6"></p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="uk-margin-large-bottom" ng-show="boardList.length">
+			<div class="heading-section">
+				<h1>Local board candidates <span ng-if="ideasView" class="g-book">on {{ ideaTitle }}</span></h1>				
+			</div>
+			<div class="uk-grid">
+				<div class="ac-candidate-item" ng-class="{ 'uk-width-medium-1-3' : !ideasView }" ng-repeat="person in boardList">
+					<div class="inner-wrap">
+						<input type="checkbox" name="favourites" value="fav-{{person.CandidateId}}" id="fav-{{person.CandidateId}}" ng-click="favourite(person)" ng-checked="favInit(person.CandidateId)">
+						<div class="favourite-btn">
+							<label for="fav-{{person.CandidateId}}"><i class="uk-icon-star"></i><span class="ns-sr-only">
+								<span ng-if="favInit(person.CandidateId)">Remove</span>
+								<span ng-if="!favInit(person.CandidateId)">Add</span> {{person.Name}}
+								<span ng-if="favInit(person.CandidateId)">from</span>
+								<span ng-if="!favInit(person.CandidateId)">to</span> 
+								favourites
+							</span></label>
+						</div>
+						<div class="inner">
+							<a href="/candidate/board/{{person.CandidateId}}" class="img-wrap"><img ng-src="http://candidate.showyourlove.co.nz/app/profileimages/{{person.ImageFile}}?width=96" alt="{{person.Name}}" width="96" height="110"></a>
+							<div class="inner-text">
+							  	<a href="/candidate/board/{{person.CandidateId}}"><h3 class="heading">{{person.Name}}</h3></a>
+							  	<h4 ng-if="person.Ticket" class="uk-h5 role">{{person.Ticket}}</h4>
+						  	</div>
+					  	</div>
+					  	<a href="/candidate/board/{{person.CandidateId}}" class="idea-item" ng-if="ideasView" ng-switch on="ideasGroup">
+							<p ng-switch-when="view1" ng-text-truncate="person.Details.View1" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View1 | trusthtml" ng-model="person.Details.View1"></p>
+							<p ng-switch-when="view2" ng-text-truncate="person.Details.View2" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View2 | trusthtml" ng-model="person.Details.View2"></p>
+							<p ng-switch-when="view3" ng-text-truncate="person.Details.View3" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View3 | trusthtml" ng-model="person.Details.View3"></p>
+							<p ng-switch-when="view4" ng-text-truncate="person.Details.View4" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View4 | trusthtml" ng-model="person.Details.View4"></p>
+							<p ng-switch-when="view5" ng-text-truncate="person.Details.View5" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View5 | trusthtml" ng-model="person.Details.View5"></p>
+							<p ng-switch-when="view6" ng-text-truncate="person.Details.View6" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View6 | trusthtml" ng-model="person.Details.View6"></p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="uk-margin-large-bottom" ng-show="dhbList.length">
+			<div class="heading-section">
+				<h1>District health board candidates for {{ dhbOptionsList }} <span ng-if="ideasView" class="g-book">on {{ ideaTitle }}</span></h1>				
+			</div>
+			<div class="uk-grid">
+				<div class="ac-candidate-item" ng-class="{ 'uk-width-medium-1-3' : !ideasView }" ng-repeat="person in dhbList">
+					<div class="inner-wrap">
+						<input type="checkbox" name="favourites" value="fav-{{person.CandidateId}}" id="fav-{{person.CandidateId}}" ng-click="favourite(person)" ng-checked="favInit(person.CandidateId)">
+						<div class="favourite-btn">
+							<label for="fav-{{person.CandidateId}}"><i class="uk-icon-star"></i><span class="ns-sr-only">
+								<span ng-if="favInit(person.CandidateId)">Remove</span>
+								<span ng-if="!favInit(person.CandidateId)">Add</span> {{person.Name}}
+								<span ng-if="favInit(person.CandidateId)">from</span>
+								<span ng-if="!favInit(person.CandidateId)">to</span> 
+								favourites
+							</span></label>
+						</div>
+						<div class="inner">
+							<a href="/candidate/dhb/{{person.CandidateId}}" class="img-wrap"><img ng-src="http://candidate.showyourlove.co.nz/app/profileimages/{{person.ImageFile}}?width=96" alt="{{person.Name}}" width="96" height="110"></a>
+							<div class="inner-text">
+							  	<a href="/candidate/dhb/{{person.CandidateId}}"><h3 class="heading">{{person.Name}}</h3></a>
+							  	<h4 ng-if="person.Ticket" class="uk-h5 role">{{person.Ticket}}</h4>
+						  	</div>
+					  	</div>
+					  	<a href="/candidate/dhb/{{person.CandidateId}}" class="idea-item" ng-if="ideasView" ng-switch on="ideasGroup">
+							<p ng-switch-when="view1" ng-text-truncate="person.Details.View1" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View1 | trusthtml" ng-model="person.Details.View1"></p>
+							<p ng-switch-when="view2" ng-text-truncate="person.Details.View2" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View2 | trusthtml" ng-model="person.Details.View2"></p>
+							<p ng-switch-when="view3" ng-text-truncate="person.Details.View3" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View3 | trusthtml" ng-model="person.Details.View3"></p>
+							<p ng-switch-when="view4" ng-text-truncate="person.Details.View4" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View4 | trusthtml" ng-model="person.Details.View4"></p>
+							<p ng-switch-when="view5" ng-text-truncate="person.Details.View5" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View5 | trusthtml" ng-model="person.Details.View5"></p>
+							<p ng-switch-when="view6" ng-text-truncate="person.Details.View6" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View6 | trusthtml" ng-model="person.Details.View6"></p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="uk-margin-large-bottom" ng-show="licenseList.length">
+			<div class="heading-section">
+				<h1>Licensing trust candidates for {{ licenseOptionsList }} <span ng-if="ideasView" class="g-book">on {{ ideaTitle }}</span></h1>				
+			</div>
+			<div class="uk-grid">
+				<div class="ac-candidate-item" ng-class="{ 'uk-width-medium-1-3' : !ideasView }" ng-repeat="person in licenseList">
+					<div class="inner-wrap">
+						<input type="checkbox" name="favourites" value="fav-{{person.CandidateId}}" id="fav-{{person.CandidateId}}" ng-click="favourite(person)" ng-checked="favInit(person.CandidateId)">
+						<div class="favourite-btn">
+							<label for="fav-{{person.CandidateId}}"><i class="uk-icon-star"></i><span class="ns-sr-only">
+								<span ng-if="favInit(person.CandidateId)">Remove</span>
+								<span ng-if="!favInit(person.CandidateId)">Add</span> {{person.Name}}
+								<span ng-if="favInit(person.CandidateId)">from</span>
+								<span ng-if="!favInit(person.CandidateId)">to</span> 
+								favourites
+							</span></label>
+						</div>
+						<div class="inner">
+							<a href="/candidate/license/{{person.CandidateId}}" class="img-wrap"><img ng-src="http://candidate.showyourlove.co.nz/app/profileimages/{{person.ImageFile}}?width=96" alt="{{person.Name}}" width="96" height="110"></a>
+							<div class="inner-text">
+							  	<a href="/candidate/license/{{person.CandidateId}}"><h3 class="heading">{{person.Name}}</h3></a>
+							  	<h4 ng-if="person.Ticket" class="uk-h5 role">{{person.Ticket}}</h4>
+						  	</div>
+					  	</div>
+					  	<a href="/candidate/license/{{person.CandidateId}}" class="idea-item" ng-if="ideasView" ng-switch on="ideasGroup">
+							<p ng-switch-when="view1" ng-text-truncate="person.Details.View1" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View1 | trusthtml" ng-model="person.Details.View1"></p>
+							<p ng-switch-when="view2" ng-text-truncate="person.Details.View2" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View2 | trusthtml" ng-model="person.Details.View2"></p>
+							<p ng-switch-when="view3" ng-text-truncate="person.Details.View3" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View3 | trusthtml" ng-model="person.Details.View3"></p>
+							<p ng-switch-when="view4" ng-text-truncate="person.Details.View4" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View4 | trusthtml" ng-model="person.Details.View4"></p>
+							<p ng-switch-when="view5" ng-text-truncate="person.Details.View5" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View5 | trusthtml" ng-model="person.Details.View5"></p>
+							<p ng-switch-when="view6" ng-text-truncate="person.Details.View6" ng-tt-words-threshold="30" ng-tt-more-label="Read more" ng-tt-less-label="Collapse" ng-bind-html="person.Details.View6 | trusthtml" ng-model="person.Details.View6"></p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="uk-container uk-container-center ac-candidate-list-wrap" ng-if="favView">
+		<p class="uk-h5 uk-text-center">LOOKING TO ADD MORE FAVOURITES? <span ng-click="favPage(false)" aria-role="button" class="uk-link-disguised">GO TO THE CANDIDATES PAGE</span></p>
+	</div>
+</section>
+

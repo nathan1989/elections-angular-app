@@ -1,0 +1,13 @@
+<input type="checkbox" name="favourites" value="fav-{{person.CandidateId}}" id="fav-{{person.CandidateId}}" ng-click="favourite(person)" ng-checked="favInit(person.CandidateId)">
+<div class="favourite-btn">
+	<label for="fav-{{person.CandidateId}}"><i class="uk-icon-star"></i><span class="ns-sr-only">Add/remove {{person.Name}} to/from favourites</span></label>
+</div>
+<a href="/candidate/{{person.CandidateId}}/mayor" class="inner-wrap">
+	<div class="inner">
+		<img src="https://placeholdit.imgix.net/~text?txtsize=10&txt=image&w=96&h=110" class="uk-float-left uk-margin-right">
+		<div class="uk-overflow-hidden">
+		  	<h3 class="heading">{{person.Name}}</h3>
+		  	<h4 ng-if="person.Ticket" class="uk-h5 role">{{person.Ticket}}</h4>
+	  	</div>
+  	</div>
+</a>

@@ -1,0 +1,209 @@
+// global font size
+html {
+	@include medium-screen {
+		font-size: $base-body-font-size-medium;
+	}
+	@include large-screen {
+		font-size: $base-body-font-size-large;
+	}
+}
+
+body {
+	background: #fff;	
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;	
+	-webkit-tap-highlight-color: rgba(0,0,0,0); // Stop android blue screen on click 
+	margin: auto;
+	font-size: 1.6rem;
+	
+	// stop scroll when mobile menu open
+	@media(max-width: $breakpoint-xlarge){		
+		&.active {
+			overflow-y: hidden;
+			position: relative;
+			z-index: 10000;
+			@include medium-screen {				
+				&:before {
+					content: '';
+					width: 100%;
+					height: 100%;
+					background: rgba(0,0,0,.6);
+					position: absolute;
+					top: 0;
+					right: 0;
+					z-index: 10000;
+				}
+			}
+		}
+	}
+}
+
+
+// Hide Angular stuff initially
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+} 
+
+// If using old IE
+.browsehappy {
+  margin: 0 0 20px;
+  background: #ccc;
+  color: #000;
+  padding: 10px;
+}
+
+// Titles for screen readers
+.ns-sr-only {
+	@include element-invisible();
+}
+
+// Clear floats
+.ns-clear {
+	clear: both;
+}
+
+// box size all the things
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+// focus
+:focus {
+	// outline: 0;
+}
+
+// transitions
+a,
+img,
+button,
+.uk-link,
+.uk-button {
+	transition: all 300ms ease-out;
+}
+
+// buttons
+[aria-role="button"]{
+	cursor: pointer;	
+}
+
+.uk-contrast .uk-button-primary,
+.uk-button-primary {
+	background: url(#{$image-path}btn-bg.svg) center center no-repeat;
+	background-size: 100% 100%;
+	width: 365px;
+	max-width: 90%;
+	&:focus,
+	&:hover {
+		background-color: transparent;
+	}
+	@include large-screen {
+		line-height: 3;
+	}
+}
+
+.uk-button {	
+	&:focus {
+		outline: 2px solid $base-link-hover-color;
+	}
+	&:active:focus {
+		outline: 0;
+	}
+}
+
+// flex fix for ios
+.uk-grid {
+	flex-wrap: inherit;
+	display: block;
+}
+
+// touch fix for ios
+.uk-touch body {
+	@media(max-width: $breakpoint-medium){
+		cursor: pointer;
+	}
+}
+
+// embedded stuff
+iframe,
+embed, 
+video {
+	max-width: 100%;
+	margin-bottom: $base-margin-vertical;
+	border: 0;
+}
+
+// links
+.uk-link-disguised {
+	cursor: pointer;
+}
+
+// tooltip
+.uk-tooltip {
+	font-family: $gotham-book;
+	border-radius: 4px;
+	box-shadow: 0 1px 12px 1px rgba(0,48,75,.6),0 3px 0 0 rgba(0,48,75,.2);
+}
+
+// typography
+h1,
+.uk-h1,
+h2,
+.uk-h2,
+h3,
+.uk-h3,
+h4,
+.uk-h4,
+h5,
+.uk-h5,
+h6,
+.uk-h6 {
+	letter-spacing: -1px;
+}
+
+h1,
+.uk-h1 {
+	line-height: 1;
+}
+
+h4,
+.uk-h4 {
+	letter-spacing: .5px;
+}
+
+.g-med {
+	font-family: $gotham-medium;
+}
+.g-book {
+	font-family: $gotham-book;
+}
+
+[class*=komika] {
+	font-family: $komika;
+}
+
+.uk-contrast .komika-red,
+.komika-red {
+	color: $block-secondary-background;
+	text-shadow: -1px 3px 4px #000;
+}
+
+.light-blue-color {
+	color: #DAF6FF;
+}
+
+.long-word {
+	word-wrap: break-word;
+}
+
+strong {
+	font-weight: normal;
+	font-family: $gotham-bold;
+}
+
+abbr,
+abbr[title] {
+	cursor: pointer;
+	border-bottom: 1px dashed $base-body-color;
+}

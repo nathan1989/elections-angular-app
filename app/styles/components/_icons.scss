@@ -1,0 +1,19 @@
+.red-circle {
+	background: $block-primary-background;				
+	border-radius: 100%;
+	@include size(42px, 42px);
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;			
+	.inner-circle {				
+		background: $block-secondary-background;
+		color: white;
+		font-size: 2.7rem;
+		line-height: 3.3rem;
+		border-radius: 100%;
+		position: absolute;
+		left: 3px;
+		top: 2px;
+		@include size(36px, 36px);
+	}
+}

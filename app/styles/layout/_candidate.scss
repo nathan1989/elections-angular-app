@@ -1,0 +1,377 @@
+// Candidate profile page
+
+.ac-candidate-wrapper {	
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	padding: 0 10px;
+	@include large-screen {
+		padding: 0;
+	}
+}
+
+.ac-candidate-page {
+	background: transparent url(../images/profile-bg-small.svg) 0 0/100% 100% no-repeat;
+	padding-top: 60px; 
+	padding-bottom: 20px;
+    margin-bottom: 50px;
+    position: relative;
+
+    @include medium-screen {
+	    margin-top: 50px;
+	    margin-bottom: 100px;
+	    padding-left: 60px;
+	    padding-right: 60px;	
+    	background-image: url(../images/profile-bg.png); // svg breaks on Edge, png needed
+    }
+
+    // close button
+	.back {
+		position: absolute;
+		right: 0;
+		top: -40px;
+		font-family: $gotham-medium;
+		@include medium-screen {
+			top: -20px;
+		}
+		@include large-screen {
+			top: 0;
+		}
+		&.bottom {
+			position: static;
+			float: right;
+		}
+		&:after {
+			content: '';
+			background: $close-icon 0 0/100% 100% no-repeat;
+			@include size(23px, 23px);
+			display: inline-block;
+			margin-left: 5px;
+			vertical-align: middle;
+		}
+	}
+
+	// candidate image
+	.img-wrap {
+		display: inline-block;
+		padding: 13px;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		@include medium-screen {
+			position: relative;
+			z-index: 1;
+			left: 0;
+			padding: 20px;
+			transform: none;
+			margin-bottom: 25px;
+		}
+
+		.inner {			
+			position: relative;
+			z-index: 2;
+			&:before {
+				content: '';
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 0;
+				z-index: 2;
+				@include size(100%, 100%);
+				box-shadow: inset 0 0 20px 5px rgba(0, 48, 75, 0.15);
+			}
+		}
+
+		.svg {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			@include size(100%, 100%);
+			z-index: 0;
+			overflow: visible;
+		}
+
+		img {
+			transition: none;
+			position: relative;
+			z-index: 1;
+			@media (max-width: $breakpoint-small-max){
+				@include size(100px, 148px);
+			}
+		}
+
+		&:before {
+	        display: block;
+	        position: absolute;
+	        content: '';
+	        top: 5px;
+	        left: 5px;
+	        right: 5px;
+	        bottom: 5px;
+	        box-shadow: 0 0 30px 5px rgba(0, 48, 75, 0.12);
+	    }
+	}
+
+	// content
+	.header {
+	    padding-top: 190px; // needed for positioned img
+		text-align: center;
+		margin-bottom: $utility-margin-small;
+		@include medium-screen {
+			padding-top: 0;
+			text-align: left;
+			margin-bottom: $utility-margin-large / 2;
+		}
+	}
+
+	.sidebar {
+	    text-align: center;
+		margin-bottom: $utility-margin-large / 2;
+		@include medium-screen {
+			float: left;
+			width: 275px;
+			text-align: left;
+		}
+	}
+
+	.main {
+		font-family: $gotham-book;
+		@include medium-screen {
+			display: inline-block;
+			width: calc(100% - 275px);
+			padding-left: 20px;
+		}		
+		@include large-screen {
+			padding-left: 40px;
+		}
+	}
+
+	// headings
+	h1,
+	h2,
+	h3 {
+		color: $block-secondary-background;
+	}
+	h2 {
+    	font-size: 3rem;
+    	letter-spacing: -1.24px;
+    	@include medium-screen {
+    		font-weight: 2.8rem;
+    		letter-spacing: -1.33px;
+    	}
+	}
+
+	.subheading {
+		color: $block-primary-background;
+		font-family: $gotham-book;
+		strong {
+			display: block;
+			@include medium-screen {
+				display: inline;
+			}
+		}
+	}
+
+	section {
+		margin-bottom: $utility-margin-large;
+	}
+
+	// social and website links
+	.link-list {
+		letter-spacing: -.82px;
+		font-size: 2.1rem;
+		font-family: $gotham-medium;
+		position: relative;
+		z-index: 2;
+    	margin-bottom: 25px;
+		@include large-screen {
+			font-size: 1.8rem;
+			letter-spacing: -.86px;
+		}
+
+		li:first-child {
+			a:after {
+				content: ' one';
+			}
+		}
+
+		li:nth-child(2) {
+			a:after {
+				content: ' two';
+			}
+		}
+
+		li:nth-child(3) {
+			a:after {
+				content: ' three';
+			}
+		}
+
+		li:nth-child(4) {
+			a:after {
+				content: ' four';
+			}
+		}
+
+		li:nth-child(5) {
+			a:after {
+				content: ' five';
+			}
+		}
+	}
+
+	// form elements
+	.uk-button,
+	.search-sections select {
+		color: white;
+		background: $base-link-color-alt;
+		letter-spacing: -.76px;
+		border-radius: 10px;
+		text-align: left;
+		min-width: 220px;
+
+		&:hover,
+		&:focus,
+		&:active {
+			color: white;
+			background-color: $base-link-hover-color;
+		}
+		&:focus {
+			outline: 2px solid $base-link-hover-color;
+		}
+		&:active:focus {
+			outline: 0;
+		}
+	}
+
+	.fav-check {
+		position: absolute;
+		left: -9999px;
+	}
+
+	.uk-button {
+		line-height: 48px;
+	    min-height: 48px;
+	    padding-left: 10px;
+	    padding-right: 20px;
+		& + .uk-button {
+			margin: 20px auto 0;
+			display: block;
+			@include medium-screen {
+				display: inline-block;
+				margin-left: 0;
+				margin-right: 0;
+			}
+		}
+	}
+
+	.search-sections {
+		@include medium-screen {
+			display: inline-block;
+		}
+	}
+
+	.search-sections select {
+		font-family: $gotham-bold;
+		box-shadow: none;
+		border: 0;
+		background-image: $chevron-down-white;
+		background-position: 97% 20px;
+	    background-repeat: no-repeat;
+	    padding-left: 15px;
+	    letter-spacing: -.86px;
+	    &:hover,
+	    &:focus,
+	    &:active {
+	    	color: white;
+	    	background-image: $chevron-down-white;
+	    	background-color: $base-link-color-alt;
+	    }
+	}
+		
+	.red-circle {
+		vertical-align: middle;
+		margin-right: 5px;
+		text-align: center;
+		@include size(27px, 27px);
+		@include medium-screen {
+			@include size(29px, 29px);
+		}
+		.inner-circle {
+			font-size: 1.6rem;
+			line-height: 23px;
+			left: 2px;
+			top: 2px;
+			@include size(23px, 22px);
+			@include medium-screen {
+				font-size: 1.5rem;
+				line-height: 26px;
+				@include size(25px, 23px);
+			}
+		}
+	}
+
+	// generic text
+	.text {
+		letter-spacing: -.57px;
+		line-height: 22px;
+		font-size: 1.82rem;
+		@include large-screen {
+			font-size: 1.6rem;
+		}
+	}
+}
+
+// ideas/stance section
+.ideas-list-single {
+	background: #EEF1F2;
+	border-radius: 5px;
+	padding: 20px;
+	position: relative;
+	margin-top: 40px;
+
+	&:before {
+		content: '';
+		@include size(0, 0);
+		border-style: solid;
+		border-width: 0 0 30px 30px;
+		border-color: transparent transparent #EEF1F2 transparent;
+		position: absolute;
+	    left: 50%;
+	    top: -30px;
+	    transform: translateX(-50%);
+	    @include medium-screen {
+	    	transform: none;
+	    	left: 70px;
+	    }
+	}
+
+	p {
+		margin: 0;
+		letter-spacing: -.5px;
+		line-height: 21px;
+		transition: .5s linear all;
+		&.ng-enter {
+			opacity: 0;
+		}
+		&.ng-enter-active {
+			opacity: 1;
+		}
+		&.ng-leave {
+			display: none;
+			opacity: 1;
+		}
+		&.ng-leave-active {
+			display: none;
+			opacity: 0;	
+		}
+	}
+
+	.ng-empty {
+		&:before {
+			content: 'To read more about what this candidate thinks, please see their personal profile statement above.';
+		}
+	}
+}

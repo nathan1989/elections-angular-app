@@ -1,0 +1,107 @@
+// fonts
+$gotham-bold: 'gotham-bold', Helvetica, Arial, sans-serif;
+$gotham-medium: 'gotham-medium', Helvetica, Arial, sans-serif;
+$gotham-book: 'gotham-book', Helvetica, Arial, sans-serif;
+$rooney: 'rooney', Helvetica, Arial, sans-serif;
+$komika: 'komika', Helvetica, Arial, sans-serif;
+
+// paths
+$icon-font-path: 'fonts';
+$font-path: $icon-font-path;
+$image-path: '../images/';
+
+// colours
+$primary-blue: #007DBA;
+$primary-green: #5fa539;
+$dark-blue: #00263C;
+$cream: #F7F6E0;
+
+// body
+$base-body-font-family: $gotham-bold;
+$base-body-color: #000;
+$base-body-font-size: 55%;
+$base-body-font-size-medium: 55%;
+$base-body-font-size-large: 62.5%;
+$base-body-line-height: 1.4;
+$base-em-color: #545C55;
+
+// links
+$base-link-color: #00B4FF;
+$base-link-color-alt: #009BE9;
+$base-link-hover-color: #059;
+$base-link-hover-text-decoration: none; 
+
+$contrast-base-link-hover-color: #6fbfff;
+$contrast-base-link-hover-text-decoration: $base-link-hover-text-decoration;
+
+$contrast-base-link-color: $base-link-color;
+
+// icons
+$close-icon: url(data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224px%22%20height%3D%2223px%22%20viewBox%3D%221238%20536%2024%2023%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0D%0A%09%09%20%20%20%20%3Cpath%20d%3D%22M1260.28947%2C536.746061%20C1259.29472%2C535.751313%201257.6747%2C535.751313%201256.67995%2C536.746061%20L1249.51776%2C543.908248%20L1242.384%2C536.746061%20C1241.38925%2C535.751313%201239.76923%2C535.751313%201238.77448%2C536.746061%20C1237.77973%2C537.740809%201237.77973%2C539.360828%201238.77448%2C540.355576%20L1245.90825%2C547.517763%20L1238.74606%2C554.651529%20C1237.75131%2C555.646277%201237.75131%2C557.266296%201238.74606%2C558.261044%20C1239.25765%2C558.772629%201239.91134%2C559%201240.56503%2C559%20C1241.21872%2C559%201241.87241%2C558.744208%201242.384%2C558.261044%20L1249.51776%2C551.127278%20L1256.65153%2C558.261044%20C1257.16311%2C558.772629%201257.81681%2C559%201258.4705%2C559%20C1259.12419%2C559%201259.77788%2C558.744208%201260.28947%2C558.261044%20C1261.28421%2C557.266296%201261.28421%2C555.646277%201260.28947%2C554.651529%20L1253.12728%2C547.517763%20L1260.26104%2C540.383998%20C1261.28421%2C539.360828%201261.28421%2C537.769231%201260.28947%2C536.746061%22%20id%3D%22Page-1%22%20stroke%3D%22none%22%20fill%3D%22%23009DEE%22%20fill-rule%3D%22evenodd%22%3E%3C%2Fpath%3E%0D%0A%09%09%3C%2Fsvg%3E);
+$chevron-down-white: url(data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2215px%22%20height%3D%229px%22%20viewBox%3D%22214%2016%2015%209%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0D%0A%20%20%20%20%3Cpolyline%20id%3D%22Path-1-Copy%22%20stroke%3D%22%23FFFFFF%22%20stroke-width%3D%222%22%20fill%3D%22none%22%20transform%3D%22translate%28221.500000%2C%2020.250000%29%20rotate%28-360.000000%29%20translate%28-221.500000%2C%20-20.250000%29%20%22%20points%3D%22215%2017%20221.5%2023.5%20228%2017%22%3E%3C%2Fpolyline%3E%0D%0A%3C%2Fsvg%3E);
+
+// buttons
+$button-height: 55px;
+$button-line-height: 3.5;
+$button-font-size: 1.8rem;
+
+// containers
+$block-primary-background: #00304B;
+$block-secondary-background: #E3647B;
+$block-third-background: #DAF6FF;
+$inner-container: 590px;
+$inner-container-medium: 700px;
+
+// headings
+$base-heading-font-family: $gotham-bold;
+$base-heading-line-height: 1.4;
+$base-heading-color: #231F20;
+$base-margin-vertical: 10px;
+$base-h1-font-size:  4.2rem;
+$base-h1-line-height: $base-heading-line-height;
+$base-h2-font-size:  2.6rem;
+$base-h2-line-height: $base-heading-line-height;
+$base-h3-font-size: 2.0rem;
+$base-h3-line-height: $base-heading-line-height;
+$base-h4-font-size:  1.8rem;
+$base-h4-line-height: $base-heading-line-height;
+$base-h5-font-size:  1.6rem;
+$base-h5-line-height: $base-heading-line-height;
+$base-h6-font-size:  1.4rem;
+$base-h6-line-height: $base-heading-line-height;
+$utility-heading-large-font-size: 4.8rem;
+$utility-heading-large-line-height: $base-heading-line-height;
+
+// forms
+$form-height: 48px;
+$form-border: #001826;
+$form-border-width: 2px;
+$form-placeholder-color: #808080;
+$form-focus-background: #fff;
+$form-focus-border: $form-border;
+
+$contrast-form-background: $form-focus-background;
+$contrast-form-border: $form-border;
+$contrast-form-focus-border: $form-focus-border;
+
+$form-disabled-border: #001826;
+$form-disabled-background: #DED1BB;
+
+$form-advanced-border: $dark-blue;
+$form-advanced-checked-color: $block-primary-background;
+$form-advanced-size: 20px;
+$form-advanced-radio-size: 10px;
+
+// tooltip
+$tooltip-max-width: 320px;
+$tooltip-padding-vertical: 15px;
+$tooltip-padding-horizontal: 10px;
+$tooltip-triangle-size: 10px;
+$tooltip-background: #F0F0F0;
+$tooltip-color: $block-primary-background;
+$tooltip-font-size: 1.8rem;
+$tooltip-line-height: 1.2;
+$tooltip-offset-horizontal: 15px;
+
+// notify
+$notify-width: 480px;

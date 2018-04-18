@@ -1,0 +1,41 @@
+<section class="uk-block uk-block-primary uk-contrast">
+	<div class="ac-search-form uk-container uk-container-center" ng-class="{ 'uk-animation-slide-left uk-animation-reverse' : animate, 'uk-animation-slide-left' : reverseAnimate }">
+		<h1 class="uk-text-center">Find candidates</h1>
+		<div class="uk-form">
+			<div class="uk-visible-small search-controls">
+				<label for="radio-address" ng-click="chooseSearch('address');" ng-class="{ active : address }">Address search</label>
+				<label for="radio-ward" ng-click="chooseSearch('ward');" ng-class="{ active : ward }">Manual search</label>
+			</div>
+			<div class="search-sections" ng-class="{ active : address }">
+				<label class="uk-hidden-small choices">
+					<span class="ns-sr-only">Choose address search</span>
+					<input type="radio" name="search" value="address" id="radio-address" ng-model="choiceSearch" class="big-radio blue-radio" ng-change="chooseSearch('address')">
+				</label>
+				<label for="address-search" class="ns-sr-only">Address search</label>
+				<input type="text" id="address-search" name="address-search" ng-change="searchAddress()" class="uk-width-1-1" placeholder="{{ addressPlaceholder }}" ng-model="searchAddressInput" ng-disabled="!address" autofocus search-address>
+				<div class="results" ng-hide="!address || error" ng-if="results.length">
+					<span ng-repeat="result in results" ng-click="getAddress($event)">{{result.ResultString[0]._text}}</span>
+				</div>
+			</div>
+			<div class="search-sections uk-hidden-small">
+				<span>OR</span>
+			</div>
+			<div class="search-sections" ng-class="{ active : ward }">
+				<label class="choices uk-hidden-small">
+					<span class="ns-sr-only">Choose manual search</span>
+					<input type="radio" name="search" value="ward" id="radio-ward" ng-model="choiceSearch" class="big-radio blue-radio" ng-change="chooseSearch('ward')">
+				</label>
+				<label for="ward" class="ns-sr-only">Select ward</label>
+				<select id="ward" class="uk-width-1-1 uk-margin-bottom" ng-model="key" ng-options="key as key for (key, val) in wards" ng-change="wardBoard(key, 'ward')" ng-disabled="!ward"><option style="display:none" value="">Select ward</option></select>
+				
+				<label for="board" class="ns-sr-only">Select local board</label>	
+		        <select id="board" class="uk-width-1-1" ng-model="wardValues" ng-options="value for value in wards[key]" ng-change="wardBoard(key, 'board')" ng-disabled="!ward"><option style="display:none" value="">Select local board</option></select>
+			</div>
+		</div>
+		<p class="loading" ng-if="loadingSearch"><i class="uk-icon-spinner uk-icon-spin uk-icon-medium"></i></p>
+	</div>	
+</section>
+<section class="uk-block uk-block-secondary uk-contrast">
+	<div class="uk-container uk-container-center" ng-include="'views/no-results.html'">
+	</div>
+</section>

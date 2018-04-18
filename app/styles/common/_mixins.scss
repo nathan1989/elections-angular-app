@@ -1,0 +1,99 @@
+// Makes an element visually hidden, but accessible.
+// @see http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+@mixin element-invisible {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+// Turns off the element-invisible effect.
+@mixin element-invisible-off {
+  position: static !important;
+  height: auto;
+  width: auto;
+  overflow: visible;
+  clip: auto;
+}
+
+// Clearfix
+@mixin clearfix {
+  &:before,
+  &:after {
+      content: "";
+      display: table;
+  }
+
+  &:after { clear: both; }
+}
+
+// Size
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+// background size
+@mixin bg-size($width, $height) {
+  background-size: $width $height;
+}
+
+@mixin hook-base-h1(){ // hook test
+	display: block;
+}
+
+// media queries
+@mixin small-screen {
+  @media (min-width: #{$breakpoint-small}) {
+    @content;
+  }
+}
+
+@mixin medium-screen {
+  @media (min-width: #{$breakpoint-medium}) {
+    @content;
+  }
+}
+
+@mixin large-screen {
+  @media (min-width: #{$breakpoint-large}) {
+    @content;
+  }
+}
+
+@mixin xlarge-screen {
+  @media (min-width: #{$breakpoint-xlarge}) {
+    @content;
+  }
+}
+
+// retina
+@mixin retina {
+  @media
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min--moz-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1),
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    @content;
+  }
+}
+
+// curve
+@mixin curve-bottom($smallHeight: 15px, $largeHeight: 30px, $fill: #fff){
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: $smallHeight;
+  width: 100%;
+  @include medium-screen {
+    height: $largeHeight;   
+  }
+  path {
+    fill: $fill;
+  }
+}
+
